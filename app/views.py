@@ -63,18 +63,52 @@ class NewsCategoryView(ModelView):
     datamodel = SQLAInterface(NewsCategory)
     list_columns = ['id', 'name']
 
-class NewsPageView(BaseView):
-    default_view = 'local_news'
 
-    @expose('/local_news/')
-    def local_news(self):
-        param1 = 'Local News'
+class iphone(BaseView):
+    default_view = 'iphone12_pro'
+    
+    @expose('/iphone12_pro/')
+    def iphone12_pro(self):
+        param1 = 'iphone12 pro'
+        self.update_redirect()
+        return self.render_template('news.html', param1 = param1)
+    @expose('/iphone12/')
+    def iphone12(self):
+        param1 = 'iphone12'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+    @expose('/iphone11/')
+    def iphone11(self):
+        param1 = 'iphone11'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+    @expose('/iphoneSE/')
+    def iphoneSE(self):
+        param1 = 'iphoneSE'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+
+
+
+
+class Mac(BaseView):
+    default_view = 'MacBook_Air'
+
+    @expose('/MacBook_Air/')
+    def MacBook_Air(self):
+        param1 = 'MacBook_Air'
         self.update_redirect()
         return self.render_template('news.html', param1 = param1)
 
-    @expose('/global_news/')
-    def global_news(self):
-        param1 = 'Global News'
+    @expose('/MacBook_Pro_13/')
+    def MacBook_Pro_13(self):
+        param1 = 'MacBook_Pro_13'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+    
+    @expose('/MacBook_Pro_16/')
+    def MacBook_Pro_16(self):
+        param1 = 'MacBook_Pro_16'
         self.update_redirect()
         return self.render_template('news.html', param=param1)
 
@@ -82,8 +116,14 @@ class NewsPageView(BaseView):
 db.create_all()
 
 """ Page View """
-appbuilder.add_view(NewsPageView, 'Local News', category="News")
-appbuilder.add_link("Global News", href="/newspageview/global_news/", category="News")
+appbuilder.add_view(iphone, "iphone12 Pro", category='iphone')
+appbuilder.add_link("iphone12", href="/iphone/iphone12/", category="iphone")
+appbuilder.add_link("iphone11", href="/iphone/iphone11/", category="iphone")
+appbuilder.add_link("iphoneSE", href="/iphone/iphoneSE/", category="iphone")
+
+appbuilder.add_view(Mac, 'MacBook Air', category="Mac")
+appbuilder.add_link("MacBook Pro 13 inch", href="/Mac/MacBook_Pro_13/", category="Mac")
+appbuilder.add_link("MacBook Pro 16 inch", href="/Mac/local_news/", category="Mac")
 
 """ Custom Views """
 appbuilder.add_view(MenuItemView, "MenuItem", icon="fa-folder-open-o", category="Admin")
