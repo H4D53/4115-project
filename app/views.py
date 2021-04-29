@@ -76,7 +76,7 @@ class NewsPageView(BaseView):
     def global_news(self):
         param1 = 'Global News'
         self.update_redirect()
-        return self.render_template('news.html', param1=param1)
+        return self.render_template('news.html', param=param1)
 
 
 db.create_all()
