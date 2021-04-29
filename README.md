@@ -15,3 +15,4 @@ sqlite_web -p 8000 -H $hostname app.db
 
 . get_preview_link.sh
 enter the sql url
+\
