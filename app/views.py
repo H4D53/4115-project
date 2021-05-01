@@ -1,11 +1,13 @@
 from flask_appbuilder import ModelView
 from flask_appbuilder.fieldwidgets import Select2Widget
 from flask_appbuilder.models.sqla.interface import SQLAInterface
-from .models import Employee,Department, Function, EmployeeHistory, Benefit, MenuItem, MenuCategory, News, NewsCategory
+from .models import Employee,Department, Function, EmployeeHistory, Benefit, MenuItem, MenuCategory, News, NewsCategory,Frontpage
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from app import appbuilder, db
 from flask_appbuilder.baseviews import expose, BaseView
-
+import json
+import logging
+log = logging.getLogger(__name__)
 
 def department_query():
     return db.session.query(Department)
@@ -63,7 +65,11 @@ class NewsCategoryView(ModelView):
     datamodel = SQLAInterface(NewsCategory)
     list_columns = ['id', 'name']
 
+class FrontpageView(ModelView):
+    datamodel = SQLAInterface(Frontpage)
+    list_columns = ['id','heading','sub_heading','point_1','point_2','point_3','point_4','point_5','point_5','point_6','point_7','background','icon']
 
+    
 class iphone(BaseView):
     default_view = 'iphone12_pro'
     
@@ -89,6 +95,31 @@ class iphone(BaseView):
         return self.render_template('news.html', param=param1)
 
 
+class ipad(BaseView):
+    default_view = 'iPad_Pro'
+
+    @expose('/iPad_Pro/')
+    def iPad_Pro(self):
+        param1 = 'iPad Pro'
+        self.update_redirect()
+        return self.render_template('news.html', param1 = param1)
+
+    @expose('/iPad_Air/')
+    def iPad_Air(self):
+        param1 = 'iPad_Air'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+    
+    @expose('/iPad/')
+    def iPad(self):
+        param1 = 'iPad'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
+    @expose('/iPad_mini/')
+    def iPad_mini(self):
+        param1 = 'iPad_mini'
+        self.update_redirect()
+        return self.render_template('news.html', param=param1)
 
 
 class Mac(BaseView):
@@ -109,25 +140,36 @@ class Mac(BaseView):
     @expose('/MacBook_Pro_16/')
     def MacBook_Pro_16(self):
         param1 = 'MacBook_Pro_16'
+        data = db.session.query(Frontpage).all()
+        for da in data:
+            print(da.heading)
+        #log.error("Update ViewMenu error: {0}".format(str(data[0])))
         self.update_redirect()
-        return self.render_template('news.html', param=param1)
-
-
+        return self.render_template('news.html', datas=data)
+        
+   
 db.create_all()
 
 """ Page View """
+
+appbuilder.add_view(Mac, 'MacBook Air', category="Mac")
+appbuilder.add_link("MacBook Pro 13 inch", href="/mac/MacBook_Pro_13/", category="Mac")
+appbuilder.add_link("MacBook Pro 16 inch", href="/mac/MacBook_Pro_16/", category="Mac")
+
 appbuilder.add_view(iphone, "iphone12 Pro", category='iphone')
 appbuilder.add_link("iphone12", href="/iphone/iphone12/", category="iphone")
 appbuilder.add_link("iphone11", href="/iphone/iphone11/", category="iphone")
 appbuilder.add_link("iphoneSE", href="/iphone/iphoneSE/", category="iphone")
 
-appbuilder.add_view(Mac, 'MacBook Air', category="Mac")
-appbuilder.add_link("MacBook Pro 13 inch", href="/Mac/MacBook_Pro_13/", category="Mac")
-appbuilder.add_link("MacBook Pro 16 inch", href="/Mac/local_news/", category="Mac")
-
+appbuilder.add_view(ipad, 'iPad Pro', category="ipad")
+appbuilder.add_link("iPad Air", href="/ipad/iPad_Air/", category="ipad")
+appbuilder.add_link("iPad", href="/ipad/iPad/", category="ipad")
+appbuilder.add_link("iPad mini", href="/ipad/iPad_mini/", category="ipad")
 """ Custom Views """
 appbuilder.add_view(MenuItemView, "MenuItem", icon="fa-folder-open-o", category="Admin")
 appbuilder.add_view(MenuCategoryView, "MenuCategory", icon="fa-folder-open-o", category="Admin")
 appbuilder.add_view(NewsView, "News", icon="fa-folder-open-o", category="Admin")
 appbuilder.add_view(NewsCategoryView, "NewsCategory", icon="fa-folder-open-o", category="Admin")
+
+appbuilder.add_view(FrontpageView, "Frontpage", icon="fa-folder-open-o", category="Admin")
 

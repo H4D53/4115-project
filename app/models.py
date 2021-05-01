@@ -106,3 +106,20 @@ class NewsCategory(Model):
     __tablename__ = 'news_category'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
+    
+class Frontpage(Model):
+     __tablename__ = 'frontpage'
+     id = Column(Integer, primary_key=True)
+     heading = Column(String(50), nullable=False)
+     sub_heading = Column(String(50), nullable=False)
+     point_1 = Column(String(50), nullable=True)
+     point_2 = Column(String(50), nullable=True)
+     point_3 = Column(String(50), nullable=True)
+     point_4 = Column(String(50), nullable=True)
+     point_5 = Column(String(50), nullable=True)
+     point_6 = Column(String(50), nullable=True)
+     point_7 = Column(String(50), nullable=True)
+     background = Column(String(50), nullable=True)
+     icon = Column(String(50), nullable=True)
+     
+
