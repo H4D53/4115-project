@@ -95,7 +95,7 @@
                         <div class="col-md-7 col-md-offset-1 col-xs-offset-1">
                     <h2 class="featurette-heading"><P>{{data[col]}}</P>
                     {% elif data[col] and col== 'sub_heading' %}
-                    <P><span class="text-muted">'{{datas[0].sub_heading}}'</span></P></h2>
+                    <P><span class="text-muted">'{{data.sub_heading}}'</span></P></h2>
                     <ul>
                     {% elif data[col] %}
                     <li class="lead tight">{{data[col]}}</li>
