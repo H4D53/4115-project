@@ -1,13 +1,13 @@
-li.tight {
+ls.tight {
     margin-top: 0;
     margin-bottom: 0;
 }
 
 .navbar-inverse {
-    background-color: crimson;
-    border-color: crimson;
+    background-color: #2e2d2d;
+    border-color: #050000;
 }
 
 .navbar-brand a{
-    color: #FFFFFF;
+    color: #fffdfc;
 }
