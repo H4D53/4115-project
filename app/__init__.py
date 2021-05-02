@@ -1,5 +1,5 @@
 import logging
-from flask import Flask
+from flask import Flask, render_template
 from flask_appbuilder import AppBuilder, SQLA
 from sqlalchemy.engine import Engine
 from sqlalchemy import event
