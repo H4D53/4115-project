@@ -123,3 +123,54 @@ class Frontpage(Model):
      icon = Column(String(50), nullable=True)
      
 
+class iPad(Model):
+     __tablename__ = 'iPad'
+     id = Column(Integer, primary_key=True)
+     img = Column(String(50), nullable=False)
+     models = Column(String(50), nullable=False)
+     iPadsize = Column(String(50), nullable=False)
+     chip = Column(String(50), nullable=False)
+     wifi = Column(String(50), nullable=True)
+     USB_type = Column(String(50), nullable=True)
+     
+
+class Watch(Model):
+     __tablename__ = 'Watch'
+     id = Column(Integer, primary_key=True)
+     img = Column(String(50), nullable=False)
+     models = Column(String(50), nullable=False)
+     watchsize = Column(String(50), nullable=False)
+     gps = Column(String(50), nullable=False)
+     function = Column(String(50), nullable=True)
+     internet = Column(String(50), nullable=True)
+    
+class Mac(Model):
+    __tablename__ = 'Mac'
+    id = Column(Integer, primary_key=True)
+    img = Column(String(50), nullable=False)
+    models = Column(String(50), nullable=False)
+    DisplaySize = Column(String(50), nullable=False)
+    chip = Column(String(50), nullable=False)
+    wifi = Column(String(50), nullable=True)
+    bluetooth = Column(String(50), nullable=True)
+
+class MacCategory(Model):
+    __tablename__ = 'mac_category'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
+    
+class iPhone(Model):
+    __tablename__ = 'iPhone'
+    id = Column(Integer, primary_key=True)
+    img = Column(String(50), nullable=False)
+    models = Column(String(50), nullable=False)
+    iPhonesize = Column(String(50), nullable=False)
+    chip = Column(String(50), nullable=False)
+    wifi = Column(String(50), nullable=True)
+    USB_type = Column(String(50), nullable=True)
+
+
+class iPhoneCategory(Model):
+    __tablename__ = 'iphone_category'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
